@@ -34,5 +34,66 @@ function calculateTax(income: number, taxYear = 2022): number {
 
 calculateTax(10_000);
 
-// Objects
-let employee = { id: 1}
+// Objects  example 1
+let employee1: {
+ readonly id: number,
+ name: string,
+ retire: (date: Date) => void
+} = { 
+    id: 1, 
+    name: 'Mosh',
+    retire: (date: Date) => {
+        console.log(date);
+    }
+}; 
+
+// Object with type Aliases
+type Employee = {
+    readonly id: number,
+    name: string,
+    retire: (date: Date) => void
+}
+
+let employee: Employee = { 
+       id: 1, 
+       name: 'Mosh',
+       retire: (date: Date) => {
+           console.log(date);
+       }
+   }; 
+
+//    Object with Union Types
+function KgToLbs(weight: number | string): number {
+    // Narrowing
+    if (typeof weight === 'number')
+        return weight * 2.2;
+    else 
+    return parseInt(weight) * 2.2;
+}
+KgToLbs(10);
+KgToLbs('10kg');
+
+// Object with Intersection types
+type Draggable = {
+    drag: () => void
+};
+
+type Resizable = {
+    resize: () => void
+};
+
+type UIWidget = Draggable & Resizable;
+
+let textBox: UIWidget = {
+    drag: () => {},
+    resize: () => {}
+}
+
+// Object with Literal Types (Literal types means exact value or specific value)
+type Quantity = 50 | 100;
+let quantity: Quantity = 100;
+
+type Metric = 'cm' | 'inch';
+let metric: Metric = 'cm'
+
+ 
